@@ -4,14 +4,14 @@
 using namespace std;
 
 float getLength(int eumpyo) {
-	float T=0;
-	if (eumpyo == 4) T = 1.0/2;
-	else if (eumpyo == 8) T = 0.5/2; // 8분음표는 0.5초
-	else if (eumpyo == 16) T = 0.25/2; // 16분음표는 0.25초
+	float T = 0;
+	if (eumpyo == 4) T = 1.0 / 2;
+	else if (eumpyo == 8) T = 0.5 / 2; // 8분음표는 0.5초
+	else if (eumpyo == 16) T = 0.25 / 2; // 16분음표는 0.25초
 	return T;
 }
 float getfrequency(int eumpyo) {
-	float f=0;
+	float f = 0;
 	if (eumpyo == 'C') f = 261;
 	else if (eumpyo == 'D') f = 294; // D
 	else if (eumpyo == 'E') f = 330; // E
@@ -23,7 +23,7 @@ float getfrequency(int eumpyo) {
 	return f;
 }
 float getAmplitude(int eumpyo) {
-	float a=0;
+	float a = 0;
 	a = eumpyo * 1000;
 	return a;
 }
@@ -49,6 +49,8 @@ int main() {
 	data = new short[N]; // allocate memory for 10 seconds mono
 	const float pi = 3.141592;
 	float dt = 1. / fs[0];
+	*n = 1;   // stereo --> mono
+	*b = n[0] * fs[0] * sizeof(short); // byte rate change
 
 	//데이터 읽기
 	ifstream zz("piece.txt");
@@ -71,7 +73,7 @@ int main() {
 	// 나의 wave file 닫기
 
 
-	
+
 	ofstream yy("my5.wav", ios::binary | ios::out);
 	if (!yy) return 666;  // 만일 파일이 열리지 않으면 프로그램을 끝낸다. 
 	yy.write(header, 44 * sizeof(char)); // 헤더를 쓴다. 
