@@ -30,7 +30,7 @@ float getAmplitude(int eumpyo) {
 
 
 int main() {
-	ifstream xx("my.wav", ios::binary | ios::in);
+	ifstream xx("Beatles-LetItBe-wav_30s.wav", ios::binary | ios::in);
 	if (!xx) return 999;  // if the file is not found
 	char header[44];
 	// Sprint 1
